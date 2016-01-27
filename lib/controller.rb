@@ -4,8 +4,12 @@ require 'yaml'
 
 module Lightwavez
 
+  # you will need to create one of these:
+  # c = Lightwavez::Controller.new
   class Controller
 
+    # if addres is missing, it will use discover to find it
+    # if mapping_file is missing, it will load 'mapping.yml' from the running folder
     def initialize(address = nil, port = 9760, mapping_file = "")
       @mapping = {}
 
@@ -17,10 +21,18 @@ module Lightwavez
       @client = Lightwavez::Client.new(address, port)
     end
 
+    # registers the client with the link. The first time this runs the lights on the link
+    # will flash and the button needs to be pressed to authorise the client
+    # calling this again after initial registration will return the IP address of the link
     def register
       @client.discover
     end
 
+    # sends a command to the link.
+    # room is the name of the room based on mapping
+    # device is the name of the device based on mapping. pass '' if the command doesn't need it (all_off and mood)
+    # operation can be :on, :off, :all_off, :dim, :last_dim, :mood
+    # params is used for dim (1-32) and mood (mood name based on mapping)
     def send(room, device, operation, params = {})
       room_id = get_room(room)['id']
       device_id = get_device(room, device)
