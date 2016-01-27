@@ -1,0 +1,13 @@
+# Modify as needed
+rooms:
+  main:
+    id: 1
+    devices:
+      living_room: 1
+      counter: 2
+      kitchen: 3
+      hallway: 4
+    moods:
+      kitchen_work: 1
+      tv: 2
+      cooking: 3
