@@ -7,7 +7,12 @@ rooms:
       counter: 2
       kitchen: 3
       hallway: 4
+      standing_lamp: 5
     moods:
       kitchen_work: 1
       tv: 2
       cooking: 3
+  bedroom:
+    id: 2
+    devices:
+      sidelamp: 1

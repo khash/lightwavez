@@ -57,7 +57,7 @@ module Lightwavez
       end
 
       sock.send("100,!F*p\r", 0, '255.255.255.255', 9760)
-      server_thread.join
+      server_thread.join(2)
       sock.close
 
       if !result.is_a? Array || result.length < 1 || result[1].length < 2
